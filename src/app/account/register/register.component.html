@@ -1,0 +1,107 @@
+<div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>Регистрация</h1>
+
+            <div class="alert alert-success" *ngIf="success">
+                <strong>Регистрация успешна!</strong>  Пожалуйста, проверьте ваш email для подтверждения.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="error">
+                <strong>Ошибка при регистрации!</strong> Пожалуйста, попробуйте позже.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="errorUserExists">
+                <strong>Аккаунт с таким логином уже зарегистрирован!!</strong> Пожалуйста, выберите другой логин.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="errorEmailExists">
+                <strong>Email уже занят!</strong>Пожалуйста, выберите другой.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="doNotMatch">
+               Пароль и его подтверждение не совпадают!
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form name="form" role="form" (ngSubmit)="register()" #registerForm="ngForm" *ngIf="!success">
+                <div class="form-group">
+                    <label class="form-control-label" for="login">Логин</label>
+                    <input type="text" class="form-control" [(ngModel)]="registerAccount.login" id="login" name="login" #login="ngModel" placeholder="Логин"
+                            required minlength="1" maxlength="50" pattern="^[_'.@A-Za-z0-9-]*$">
+                    <div *ngIf="login.dirty && login.invalid">
+                        <small class="form-text text-danger" *ngIf="login.errors.required">
+                            Логин обязателен к заполнению.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="login.errors.minlength">
+                          Ваш логин должен содержать хотя бы 1 символ.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="login.errors.maxlength">
+                          Ваш логин не может быть длинее чем 50 символов.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="login.errors.pattern">
+                          Ваш логин должен содержать только буквы в нижнем регистре и цифры.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="email">Почта</label>
+                    <input type="email" class="form-control" id="email" name="email" #email="ngModel" placeholder="Почта"
+                            [(ngModel)]="registerAccount.email" minlength=5 maxlength=100 email required>
+                    <div *ngIf="email.dirty && email.invalid">
+                        <small class="form-text text-danger" *ngIf="email.errors.required">
+                            Your email is required.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="email.errors.invalid">
+                           Ваш email неверен.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="email.errors.minlength">
+                          Ваш email должен содержать хотя бы 5 символов.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="email.errors.maxlength">
+                          Ваш email не может быть длинее чем 100 символов.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="password">Новый пароль</label>
+                    <input type="password" class="form-control" id="password" name="password" #password="ngModel" placeholder="Новый пароль"
+                            [(ngModel)]="registerAccount.password" minlength=4 maxlength=50 required>
+                    <div *ngIf="password.dirty && password.invalid">
+                        <small class="form-text text-danger" *ngIf="password.errors.required">
+                          Пароль обязателен к заполнению.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="password.errors.minlength">
+                          Ваш пароль должен содержать хотя бы 6 символов.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="password.errors.maxlength">
+                          Ваш пароль не может быть длинее чем 50 символов.
+                        </small>
+                    </div>
+                    <jhi-password-strength-bar [passwordToCheck]="registerAccount.password"></jhi-password-strength-bar>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="confirmPassword">Подтверждение нового пароля</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" #confirmPasswordInput="ngModel" placeholder="Подтверждение пароля"
+                            [(ngModel)]="confirmPassword" minlength=4 maxlength=50 required>
+                    <div *ngIf="confirmPasswordInput.dirty && confirmPasswordInput.invalid">
+                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.required">
+                            Ваше подтверждение пароля обязательно к заполнению.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.minlength">
+                          Ваше подтверждение пароля должено содержать хотя бы 6 символов.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.maxlength">
+                          Ваше подтверждение пароля не может быть длинее чем 50 символов.
+                        </small>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+            <p></p>
+        </div>
+    </div>
+</div>

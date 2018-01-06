@@ -1,0 +1,34 @@
+<div *ngIf="user">
+    <h2>
+        <span>Пользователь</span> [<b>{{user.login}}</b>]
+    </h2>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Логин</span></dt>
+        <dd>
+            <span>{{user.login}}</span>
+        </dd>
+        <dt><span>Имя</span></dt>
+        <dd>{{user.firstName}}</dd>
+        <dt><span>Фамилия</span></dt>
+        <dd>{{user.lastName}}</dd>
+        <dt><span>Почта</span></dt>
+        <dd>{{user.email}}</dd>
+        <dt><span>Дата создания</span></dt>
+        <dd>{{user.createdDate | date:'dd/MM/yy HH:mm' }}</dd>
+        <dt><span>Дата последнего изменения</span></dt>
+        <dd>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</dd>
+        <dt><span>Роль</span></dt>
+        <dd>
+            <ul class="list-unstyled">
+                <li *ngFor="let authority of user.authorities">
+                    <span class="badge badge-info">{{authority}}</span>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+    <button type="submit"
+            routerLink="/user-management"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Назад</span>
+    </button>
+</div>
