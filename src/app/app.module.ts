@@ -25,12 +25,13 @@ import {
   ErrorComponent
 } from './layouts';
 import {AppComponent} from './app.component';
+import {GroupRouteAccessService} from './shared/auth/group-route-access.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     LayoutRoutingModule,
-    Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+    Ng2Webstorage.forRoot({ prefix: 'app', separator: '-'}),
     TestjhipsterSharedModule,
     TestjhipsterHomeModule,
     TestjhipsterAdminModule,
@@ -51,7 +52,8 @@ import {AppComponent} from './app.component';
     ProfileService,
     customHttpProvider(),
     PaginationConfig,
-    UserRouteAccessService
+    UserRouteAccessService,
+    GroupRouteAccessService
   ],
   bootstrap: [ JhiMainComponent ]
 })

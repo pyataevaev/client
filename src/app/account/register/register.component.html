@@ -65,6 +65,32 @@
                         </small>
                     </div>
                 </div>
+              <div class="form-group">
+                <label class="form-control-label" for="firstName">Имя</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" #firstName="ngModel" placeholder="Имя"
+                       [(ngModel)]="registerAccount.firstName" minlength=5 maxlength=100 required>
+                <div *ngIf="firstName.dirty && firstName.invalid">
+                  <small class="form-text text-danger" *ngIf="firstName.errors.required">
+                    Имя должно быть указано.
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label" for="lastName">Фамилия</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" #lastName="ngModel" placeholder="Фамилия"
+                       [(ngModel)]="registerAccount.lastName" minlength=5 maxlength=100 required>
+                <div *ngIf="lastName.dirty && lastName.invalid">
+                  <small class="form-text text-danger" *ngIf="lastName.errors.required">
+                    Фамилия должна быть указана.
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label" for="group">Группа</label>
+                <select class="form-control" name="group" id="group" [(ngModel)]="registerAccount.groupId" required>
+                  <option *ngFor="let g of groups" [ngValue]="g.id">{{g.name}}</option>
+                </select>
+              </div>
                 <div class="form-group">
                     <label class="form-control-label" for="password">Новый пароль</label>
                     <input type="password" class="form-control" id="password" name="password" #password="ngModel" placeholder="Новый пароль"

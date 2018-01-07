@@ -27,3 +27,8 @@ export * from './user-management/user-management.component';
 export * from './user-management/user-management.route';
 export * from './user-management/user-modal.service';
 export * from './admin.route';
+export * from './group-management/group-management-dialog.component';
+export * from './group-management/group-management-delete-dialog.component';
+export * from './group-management/group-management.component';
+export * from './group-management/group-management.route';
+export * from './group-management/group-modal.service';
